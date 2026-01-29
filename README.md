@@ -1,16 +1,64 @@
-# React + Vite
+# Game Balance Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Это приложение для управления балансом игры, выполнения расчетов и построения графиков.
 
-Currently, two official plugins are available:
+## Настройка и Запуск
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Установка зависимостей
 
-## React Compiler
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Подключение Firebase
 
-## Expanding the ESLint configuration
+Для работы приложения необходима база данных Firebase (Firestore).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  Зайдите на [Firebase Console](https://console.firebase.google.com/).
+2.  Нажмите **Create a project** (или выберите существующий).
+3.  После создания проекта перейдите в раздел **Build** -> **Firestore Database** в меню слева.
+4.  Нажмите **Create database**.
+    *   Выберите локацию (например, eur3 или us-central1).
+    *   Выберите режим правил безопасности. Для начала можно выбрать **Start in test mode** (это позволит всем читать/писать данные в течение 30 дней, пока вы не настроите правила).
+5.  Перейдите в настройки проекта (шестеренка рядом с Project Overview -> Project settings).
+6.  Внизу страницы в разделе "Your apps" нажмите на иконку **Web** (</>).
+7.  Зарегистрируйте приложение (введите название, например "Game Balance").
+8.  Вам будет показан код конфигурации `firebaseConfig`. Скопируйте значения из объекта `firebaseConfig`.
+
+### 3. Настройка конфигурации в коде
+
+Откройте файл `src/firebase-config.js` и замените значения в объекте `firebaseConfig` на те, что вы получили на предыдущем шаге:
+
+```javascript
+const firebaseConfig = {
+  apiKey: "ВАШ_API_KEY",
+  authDomain: "ВАШ_PROJECT_ID.firebaseapp.com",
+  projectId: "ВАШ_PROJECT_ID",
+  storageBucket: "ВАШ_PROJECT_ID.firebasestorage.app",
+  messagingSenderId: "ВАШ_SENDER_ID",
+  appId: "ВАШ_APP_ID"
+};
+```
+
+### 4. Запуск приложения
+
+```bash
+npm run dev
+```
+
+Приложение будет доступно по адресу `http://localhost:5173` (или другой порт, указанный в консоли).
+
+## Функционал
+
+*   **Tables:** Просмотр и редактирование таблиц данных. Данные синхронизируются в реальном времени.
+*   **Calculations:** Создание скриптов на JavaScript для обработки данных таблиц.
+    *   В скрипте доступен объект `tables` (ключи - названия таблиц или ID).
+    *   Скрипт должен возвращать массив объектов.
+*   **Charts:** Визуализация результатов расчетов (Line или Bar charts).
+*   **Export:** Экспорт всей конфигурации (таблицы + расчеты) в JSON файл.
+
+## Деплой на GitHub Pages
+
+1.  В `vite.config.js` убедитесь, что `base` настроен правильно (обычно `/repo-name/`).
+2.  Запустите сборку: `npm run build`.
+3.  Загрузите содержимое папки `dist` на ветку `gh-pages` или настройте GitHub Actions.
