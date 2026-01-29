@@ -1,0 +1,63 @@
+export const INITIAL_LEVELING_DATA = {
+  name: "LevelingData",
+  columns: ["Level", "CumulativeXP", "BoltMultiplier"],
+  rows: [
+    { Level: 1, CumulativeXP: 90, BoltMultiplier: 1.0 },
+    { Level: 2, CumulativeXP: 190, BoltMultiplier: 1.05 },
+    { Level: 3, CumulativeXP: 305, BoltMultiplier: 1.09 },
+    { Level: 4, CumulativeXP: 435, BoltMultiplier: 1.13 },
+    { Level: 5, CumulativeXP: 585, BoltMultiplier: 1.17 },
+    { Level: 6, CumulativeXP: 755, BoltMultiplier: 1.21 },
+    { Level: 7, CumulativeXP: 950, BoltMultiplier: 1.25 },
+    { Level: 8, CumulativeXP: 1170, BoltMultiplier: 1.29 },
+    { Level: 9, CumulativeXP: 1420, BoltMultiplier: 1.33 },
+    { Level: 10, CumulativeXP: 1705, BoltMultiplier: 1.37 },
+    { Level: 11, CumulativeXP: 2030, BoltMultiplier: 1.41 },
+    { Level: 12, CumulativeXP: 2400, BoltMultiplier: 1.45 },
+    { Level: 13, CumulativeXP: 2820, BoltMultiplier: 1.49 },
+    { Level: 14, CumulativeXP: 3300, BoltMultiplier: 1.53 },
+    { Level: 15, CumulativeXP: 3850, BoltMultiplier: 1.57 },
+    { Level: 16, CumulativeXP: 4480, BoltMultiplier: 1.61 },
+    { Level: 17, CumulativeXP: 5200, BoltMultiplier: 1.65 },
+    { Level: 18, CumulativeXP: 6025, BoltMultiplier: 1.69 },
+    { Level: 19, CumulativeXP: 6970, BoltMultiplier: 1.73 },
+    { Level: 20, CumulativeXP: 8050, BoltMultiplier: 1.77 },
+    { Level: 21, CumulativeXP: 9285, BoltMultiplier: 1.82 },
+    { Level: 22, CumulativeXP: 10695, BoltMultiplier: 1.87 },
+    { Level: 23, CumulativeXP: 12305, BoltMultiplier: 1.92 },
+    { Level: 24, CumulativeXP: 14140, BoltMultiplier: 1.97 },
+    { Level: 25, CumulativeXP: 16235, BoltMultiplier: 2.02 },
+    { Level: 26, CumulativeXP: 18625, BoltMultiplier: 2.07 },
+    { Level: 27, CumulativeXP: 21355, BoltMultiplier: 2.12 },
+    { Level: 28, CumulativeXP: 24470, BoltMultiplier: 2.18 },
+    { Level: 29, CumulativeXP: 28025, BoltMultiplier: 2.24 },
+    { Level: 30, CumulativeXP: 28025, BoltMultiplier: 2.3 }
+  ]
+};
+
+export const INITIAL_MISSION_DATA = {
+  name: "MissionData",
+  columns: ["MissionID", "BoxReward", "FinishReward", "XPPerRun"],
+  rows: [
+    { MissionID: 1, BoxReward: 80, FinishReward: 1000, XPPerRun: 18 },
+    { MissionID: 2, BoxReward: 180, FinishReward: 1000, XPPerRun: 22 },
+    { MissionID: 3, BoxReward: 260, FinishReward: 1000, XPPerRun: 26 },
+    { MissionID: 4, BoxReward: 370, FinishReward: 1000, XPPerRun: 30 },
+    { MissionID: 5, BoxReward: 445, FinishReward: 1000, XPPerRun: 34 },
+    { MissionID: 6, BoxReward: 555, FinishReward: 1000, XPPerRun: 40 },
+    { MissionID: 7, BoxReward: 645, FinishReward: 1000, XPPerRun: 44 },
+    { MissionID: 8, BoxReward: 755, FinishReward: 1000, XPPerRun: 50 },
+    { MissionID: 9, BoxReward: 840, FinishReward: 1000, XPPerRun: 54 },
+    { MissionID: 10, BoxReward: 950, FinishReward: 1000, XPPerRun: 60 },
+    { MissionID: 11, BoxReward: 1045, FinishReward: 1000, XPPerRun: 64 },
+    { MissionID: 12, BoxReward: 1155, FinishReward: 1000, XPPerRun: 69 },
+    { MissionID: 13, BoxReward: 1250, FinishReward: 1000, XPPerRun: 73 },
+    { MissionID: 14, BoxReward: 1365, FinishReward: 1000, XPPerRun: 78 },
+    { MissionID: 15, BoxReward: 1450, FinishReward: 1000, XPPerRun: 82 },
+    { MissionID: 16, BoxReward: 1575, FinishReward: 1000, XPPerRun: 86 },
+    { MissionID: 17, BoxReward: 1665, FinishReward: 1000, XPPerRun: 90 },
+    { MissionID: 18, BoxReward: 1790, FinishReward: 1000, XPPerRun: 95 },
+    { MissionID: 19, BoxReward: 1880, FinishReward: 1000, XPPerRun: 99 },
+    { MissionID: 20, BoxReward: 2005, FinishReward: 1000, XPPerRun: 104 }
+  ]
+};
