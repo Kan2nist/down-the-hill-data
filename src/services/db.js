@@ -66,23 +66,28 @@ export const deleteCalculation = async (calcId) => {
 };
 
 export const seedDataIfNeeded = async () => {
-  try {
-    const levelingRef = doc(db, TABLES_COLLECTION, INITIAL_LEVELING_DATA.name);
-    const levelingSnap = await getDoc(levelingRef);
+  const seedTable = async (data) => {
+      try {
+        const ref = doc(db, TABLES_COLLECTION, data.name);
+        let snap;
+        try {
+            snap = await getDoc(ref);
+        } catch (e) {
+             console.warn(`Could not check ${data.name} existence (offline?), attempting to seed...`, e);
+        }
 
-    if (!levelingSnap.exists()) {
-      console.log('Seeding LevelingData...');
-      await saveTable({ id: INITIAL_LEVELING_DATA.name, ...INITIAL_LEVELING_DATA });
-    }
+        if (!snap || !snap.exists()) {
+            console.log(`Seeding ${data.name}...`);
+            await saveTable({ id: data.name, ...data });
+            console.log(`Seeding ${data.name} complete.`);
+        }
+      } catch (e) {
+          console.error(`Error seeding ${data.name}:`, e);
+      }
+  };
 
-    const missionRef = doc(db, TABLES_COLLECTION, INITIAL_MISSION_DATA.name);
-    const missionSnap = await getDoc(missionRef);
-
-    if (!missionSnap.exists()) {
-      console.log('Seeding MissionData...');
-      await saveTable({ id: INITIAL_MISSION_DATA.name, ...INITIAL_MISSION_DATA });
-    }
-  } catch (error) {
-    console.error("Error seeding data:", error);
-  }
+  await Promise.all([
+      seedTable(INITIAL_LEVELING_DATA),
+      seedTable(INITIAL_MISSION_DATA)
+  ]);
 };
