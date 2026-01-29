@@ -5,6 +5,7 @@ import {
   doc,
   setDoc,
   deleteDoc,
+  getDoc,
   getDocs,
   query,
   limit
@@ -65,13 +66,23 @@ export const deleteCalculation = async (calcId) => {
 };
 
 export const seedDataIfNeeded = async () => {
-  // Check if collection is empty
-  const q = query(collection(db, TABLES_COLLECTION), limit(1));
-  const snapshot = await getDocs(q);
+  try {
+    const levelingRef = doc(db, TABLES_COLLECTION, INITIAL_LEVELING_DATA.name);
+    const levelingSnap = await getDoc(levelingRef);
 
-  if (snapshot.empty) {
-    console.log('Seeding initial data...');
-    await saveTable({ id: INITIAL_LEVELING_DATA.name, ...INITIAL_LEVELING_DATA });
-    await saveTable({ id: INITIAL_MISSION_DATA.name, ...INITIAL_MISSION_DATA });
+    if (!levelingSnap.exists()) {
+      console.log('Seeding LevelingData...');
+      await saveTable({ id: INITIAL_LEVELING_DATA.name, ...INITIAL_LEVELING_DATA });
+    }
+
+    const missionRef = doc(db, TABLES_COLLECTION, INITIAL_MISSION_DATA.name);
+    const missionSnap = await getDoc(missionRef);
+
+    if (!missionSnap.exists()) {
+      console.log('Seeding MissionData...');
+      await saveTable({ id: INITIAL_MISSION_DATA.name, ...INITIAL_MISSION_DATA });
+    }
+  } catch (error) {
+    console.error("Error seeding data:", error);
   }
 };

@@ -8,15 +8,22 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useData } from '../context/DataContext';
 
-const TableEditor = () => {
+const TableEditor = ({ tableId }) => {
   const { id } = useParams();
-  const { tables, saveTable } = useData();
+  const activeId = tableId || id;
+  const { tables, saveTable, deleteTable } = useData();
   const [newColName, setNewColName] = useState('');
   const [openColDialog, setOpenColDialog] = useState(false);
 
-  const table = tables.find(t => t.id === id);
+  const table = tables.find(t => t.id === activeId);
 
   if (!table) return <Typography>Loading or Table not found...</Typography>;
+
+  const handleDeleteTable = async () => {
+      if (window.confirm(`Are you sure you want to delete table "${table.name}"?`)) {
+          await deleteTable(activeId);
+      }
+  };
 
   const handleAddRow = async () => {
     const newRows = [...(table.rows || []), {}];
@@ -43,6 +50,7 @@ const TableEditor = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
             <Typography variant="h4">{table.name}</Typography>
             <div>
+                <Button variant="outlined" color="error" onClick={handleDeleteTable} sx={{ mr: 2 }}>Delete Table</Button>
                 <Button variant="outlined" onClick={() => setOpenColDialog(true)} sx={{ mr: 1 }}>Add Column</Button>
                 <Button variant="contained" onClick={handleAddRow}>Add Row</Button>
             </div>
