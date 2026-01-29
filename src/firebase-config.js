@@ -5,14 +5,14 @@ import { getFirestore } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// REPLACE these values with your own from the Firebase Console
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDSQT_EIrerpAnGrxjAOJBM0LwG-fjnNQc",
+  authDomain: "down-the-hill-14a87.firebaseapp.com",
+  projectId: "down-the-hill-14a87",
+  storageBucket: "down-the-hill-14a87.firebasestorage.app",
+  messagingSenderId: "446964021843",
+  appId: "1:446964021843:web:c9667231f2f397d29224a6",
+  measurementId: "G-LP87HN7CMZ"
 };
 
 // Initialize Firebase
